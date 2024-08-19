@@ -11,7 +11,7 @@ To set Protocol:
 Different type of messages:
 {
     "target": "SendTableNotification",
-    "arguments" : [{"tableNumber": 2, "numberCovers": 5, "isBooking": false, "forDrinksOnly": true}],
+    "arguments" : [{"tableNumber": 2, "covers": 5, "isWalkIn": false, "forDrinksOnly": true}],
     "type":1
 }
 
@@ -26,3 +26,15 @@ Different type of messages:
     "arguments" : [{"tableNumber": 2, "items": ["bread and cheese board", "side salad", "chips"]}],
     "type":1
 }
+
+React Front-End [in progress]
+
+![OrderUp React frontend](image.png)
+
+- Screen split into Hostess/FOH screen, Kitchen Screen & Bar Screen
+
+FOH enters details of new seating in restaurant, table number, covers, if they are a bookings or walk-in and if for drinks only (kitchen can ignore) and sends via post API call.
+
+Kitchen & Bar Screen displays a list of tables seated (NewTableNotifications received through signalR connection). Seated At timestamp comes from backend, time of api request. 
+
+TODO: Order for bar and kitchen, input for foh and list in the correct screens.
