@@ -6,6 +6,8 @@ namespace OrderUp.Application
 {
     public sealed class OrderHub : Hub<IOrderHub>
     {
+        //don't get used by the api endpoints
+        //only called when calling signalR hub directly
         public async Task SendTableNotification(Table newTable)
         {
             await Clients.All.NewTableNotification(newTable);

@@ -3,6 +3,19 @@ using OrderUp.Application;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("ClientPermission", policy =>
+    {
+        policy.AllowAnyHeader()
+        .AllowAnyMethod()
+        .SetIsOriginAllowed(origin => true)
+        .AllowCredentials();
+    });
+});
+
 builder.Services.AddSignalR();
 
 builder.Services.AddControllers();
@@ -19,9 +32,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+app.UseCors("ClientPermission");
 
-//app.UseAuthorization();
+//app.UseHttpsRedirection();
+
+app.UseAuthorization();
 
 app.MapControllers();
 
