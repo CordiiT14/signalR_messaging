@@ -9,6 +9,8 @@ function App() {
   const[online, setOnline] = useState(false);
   const [connection, setConnection] = useState(null);
   const [tableNotifications, setTableNotifications] = useState([])
+  const [kitchenOrders, setKitchenOrders] = useState([]);
+  const [barOrders, setBarOrders] = useState([]);
 
   useEffect(() =>{
     const newConnection = new HubConnectionBuilder()
@@ -29,6 +31,14 @@ function App() {
         connection.on("NewTableNotification", notification => {
           setTableNotifications(prev => [...prev, notification]); 
         })
+
+        connection.on("NewFoodOrderNotification", notification => {
+          setKitchenOrders(prev => [...prev, notification]);
+        })
+
+        connection.on("NewDrinksOrderNotification", notification => {
+          setBarOrders(prev => [...prev, notification]);
+        })
       })
       .catch( e => {
         console.log("Connection failed:", e);
@@ -46,10 +56,10 @@ function App() {
           <OrderingTab></OrderingTab>
         </Col>
         <Col>
-          <KitchenScreen tableNotifications={tableNotifications}></KitchenScreen>
+          <KitchenScreen orders={kitchenOrders} tableNotifications={tableNotifications}></KitchenScreen>
         </Col>
         <Col>
-          <BarScreen tableNotifications={tableNotifications}></BarScreen>
+          <BarScreen orders={barOrders} tableNotifications={tableNotifications}></BarScreen>
         </Col>
       </Row>
     </>

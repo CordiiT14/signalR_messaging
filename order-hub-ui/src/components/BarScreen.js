@@ -1,8 +1,9 @@
 import React from "react";
 import { Card, CardBody, CardTitle } from "reactstrap";
 import TableNotification from "./TableNotification";
+import OrderNotification from "./OrderNotification";
 
-const BarScreen = ({tableNotifications}) => {
+const BarScreen = ({orders, tableNotifications}) => {
 
     return(
         <Card>
@@ -11,7 +12,7 @@ const BarScreen = ({tableNotifications}) => {
             </CardBody>
             <TableNotification notifications={tableNotifications}></TableNotification>
             <CardBody>
-                <CardTitle>Orders:</CardTitle>
+                <OrderNotification notifications={orders}></OrderNotification>
             </CardBody>
         </Card>
     )
