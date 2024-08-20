@@ -29,7 +29,7 @@ Different type of messages:
 
 React Front-End [in progress]
 
-![OrderUp React frontend](image.png)
+![alt text](image-1.png)
 
 - Screen split into Hostess/FOH screen, Kitchen Screen & Bar Screen
 
@@ -37,4 +37,11 @@ FOH enters details of new seating in restaurant, table number, covers, if they a
 
 Kitchen & Bar Screen displays a list of tables seated (NewTableNotifications received through signalR connection). Seated At timestamp comes from backend, time of api request. 
 
-TODO: Order for bar and kitchen, input for foh and list in the correct screens.
+Kitchen gets food orders, Bar drinks order.
+
+----
+
+Project could be expanded with a Database to persist orders and tables. Have set items that can be ordered instead of free text. Some validation on the front end to avoid the ability of food orders going to bar and vice versa.
+Set up the components on their own pages, instead of split screen.
+Add basic authentication with jwt tokens and users. 
+
